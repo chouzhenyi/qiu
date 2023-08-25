@@ -41,5 +41,19 @@ export const router = createRouter({
       path: "/algorithm",
       component: () => import("views/algorithm/index.vue"),
     },
+    {
+      name: "BasicLearning",
+      path: "/basicLearning",
+      redirect: "/basicLearning/lifeCycle",
+      component: () => import("views/basicLearning/index.vue"),
+      children: [
+        {
+          name: "LifeCycle",
+          path: "/basicLearning/lifeCycle",
+          component: () =>
+            import("views/basicLearning/Knowledge/lifeCycle.vue"),
+        },
+      ],
+    },
   ],
 });

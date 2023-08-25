@@ -27,6 +27,10 @@ const routerList = [
     path: "/user/userInfoEdit",
     title: "用户信息",
   },
+  {
+    path: "/basicLearning",
+    title: "vue3学习展示",
+  },
 ];
 </script>
 <style lang="css"></style>
