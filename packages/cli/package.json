@@ -1,5 +1,5 @@
 {
-  "name": "@qiu-web/cli",
+  "name": "@qiu/cli",
   "version": "0.0.1",
   "description": "",
   "main": "index.mjs",
