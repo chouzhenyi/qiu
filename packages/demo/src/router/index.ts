@@ -29,6 +29,11 @@ export const router = createRouter({
           path: "/user/login",
           component: () => import("views/User/Basic/login.vue"),
         },
+        {
+          name: "UserInfoEdit",
+          path: "/user/userInfoEdit",
+          component: () => import("views/User/Basic/userInfoEdit.vue"),
+        },
       ],
     },
     {

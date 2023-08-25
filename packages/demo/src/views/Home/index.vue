@@ -23,6 +23,10 @@ const routerList = [
     path: "/algorithm",
     title: "算法练习",
   },
+  {
+    path: "/user/userInfoEdit",
+    title: "用户信息",
+  },
 ];
 </script>
 <style lang="css"></style>

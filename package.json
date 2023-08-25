@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "pnpm run -C ./packages/demo dev"
+    "dev": "pnpm run -C ./packages/demo dev",
+    "serve": "pnpm run -C ./packages/serve dev"
   },
   "preinstall": "npx only-allow pnpm",
   "keywords": [],
