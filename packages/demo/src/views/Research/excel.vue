@@ -1,7 +1,7 @@
 <template>
   <div>
     <FileSelect :extList="extList" @onSelect="handleOnSelect" />
-    <Table :columns="columns" :dataSource="tableData" />
+    <Table :emptyText="emptyText" :columns="columns" :dataSource="tableData" />
   </div>
 </template>
 <script lang="ts">
@@ -91,7 +91,8 @@ const columns: TableColumnType[] = [
   { dataIndex: "name", title: "姓名", width: 280 },
   { dataIndex: "age", title: "年龄", width: 220 },
   { dataIndex: "work", title: "工种", width: 280 },
-  { dataIndex: "level", title: "职称", width: 350 },
+  { dataIndex: "level", title: "职称", width: 180 },
 ];
+const emptyText = ref("暂无数据");
 </script>
 <style lang="less"></style>
