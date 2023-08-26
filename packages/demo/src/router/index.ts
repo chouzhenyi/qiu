@@ -1,8 +1,4 @@
-import {
-  createRouter,
-  createWebHashHistory,
-  createWebHistory,
-} from "vue-router";
+import { createRouter, createWebHashHistory } from "vue-router";
 import Home from "@/views/Home/index.vue";
 
 export const router = createRouter({
@@ -52,6 +48,24 @@ export const router = createRouter({
           path: "/basicLearning/lifeCycle",
           component: () =>
             import("views/basicLearning/Knowledge/lifeCycle.vue"),
+        },
+      ],
+    },
+    {
+      name: "Research",
+      path: "/research",
+      component: () => import("views/Research/index.vue"),
+      redirect: "/research/researchExcel",
+      children: [
+        {
+          name: "ResearchExcel",
+          path: "/research/researchExcel",
+          component: () => import("views/Research/excel.vue"),
+        },
+        {
+          name: "ResearchTesseract",
+          path: "/research/researchTesseract",
+          component: () => import("views/Research/tesseract.vue"),
         },
       ],
     },

@@ -31,6 +31,10 @@ const routerList = [
     path: "/basicLearning",
     title: "vue3学习展示",
   },
+  {
+    path: "/research",
+    title: "奇技淫巧",
+  },
 ];
 </script>
 <style lang="css"></style>
