@@ -24,8 +24,8 @@ const items: routerMenuType[] = [
   {
     path: "/basicLearning/customVModel",
     name: "CustomVModel",
-    label: "自定义组件",
-    title: "自定义组件",
+    label: "自定义VModel",
+    title: "自定义VModel",
     key: 1,
     icon: () => h(FormOutlined),
   },
