@@ -49,6 +49,12 @@ export const router = createRouter({
           component: () =>
             import("views/basicLearning/Knowledge/lifeCycle.vue"),
         },
+        {
+          name: "CustomVModel",
+          path: "/basicLearning/customVModel",
+          component: () =>
+            import("views/basicLearning/Knowledge/customVModel/index.vue"),
+        },
       ],
     },
     {

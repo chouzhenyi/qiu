@@ -7,6 +7,11 @@
     <input type="file" ref="file" class="hidden" @change="fileSelectChange" />
   </div>
 </template>
+<script lang="ts">
+export default {
+  name: "FileSelect",
+};
+</script>
 <script lang="ts" setup>
 import { ref, PropType } from "vue";
 import { Button, message } from "ant-design-vue";

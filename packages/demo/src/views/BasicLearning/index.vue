@@ -1,6 +1,5 @@
 <template>
-  <div>当前路由：{{ getRouteName }}</div>
-  <router-view></router-view>
+  <PageMenu :items="items" />
 </template>
 <script lang="ts">
 export default {
@@ -8,11 +7,27 @@ export default {
 };
 </script>
 <script lang="ts" setup>
-import { computed } from "vue";
-import { useRoute } from "vue-router";
+import { h } from "vue";
+import { routerMenuType } from "@qiu/components/pageMenu";
+import PageMenu from "@qiu/components/pageMenu/index.vue";
+import { ApiOutlined, FormOutlined } from "@ant-design/icons-vue";
 
-const route = useRoute();
-const getRouteName = computed(() => {
-  return route.name;
-});
+const items: routerMenuType[] = [
+  {
+    path: "/basicLearning/lifeCycle",
+    name: "LifeCycle",
+    label: "生命周期",
+    title: "生命周期",
+    key: 0,
+    icon: () => h(ApiOutlined),
+  },
+  {
+    path: "/basicLearning/customVModel",
+    name: "CustomVModel",
+    label: "自定义组件",
+    title: "自定义组件",
+    key: 1,
+    icon: () => h(FormOutlined),
+  },
+];
 </script>

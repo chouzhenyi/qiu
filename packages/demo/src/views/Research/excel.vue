@@ -12,7 +12,7 @@ export default {
 <script lang="ts" setup>
 import { ref } from "vue";
 import * as xlsx from "xlsx";
-import FileSelect from "@qiu/components/FileSelect.vue";
+import { FileSelect } from "@qiu/components";
 import { Table } from "ant-design-vue";
 import type { TableColumnType } from "ant-design-vue";
 
