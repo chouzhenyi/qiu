@@ -75,5 +75,18 @@ export const router = createRouter({
         },
       ],
     },
+    {
+      name: "MyHouse",
+      path: "/myHouse",
+      component: () => import("views/MyHouse/index.vue"),
+      redirect: "/myHouse/myHouseManagement",
+      children: [
+        {
+          name: "MyHouseManagement",
+          path: "/myHouse/myHouseManagement",
+          component: () => import("views/MyHouse/myHouseManagement.vue"),
+        },
+      ],
+    },
   ],
 });

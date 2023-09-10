@@ -35,6 +35,10 @@ const routerList = [
     path: "/research",
     title: "奇技淫巧",
   },
+  {
+    path: "/myHouse",
+    title: "租房物品收纳系统",
+  },
 ];
 </script>
 <style lang="css"></style>
