@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "pnpm run -C ./packages/demo dev",
-    "serve": "pnpm run -C ./packages/serve dev"
+    "serve": "pnpm run -C ./packages/serve dev",
+    "dev:repono": "pnpm run -C ./app/repono dev:h5",
+    "dev:wx": "pnpm run -C ./app/repono dev:mp-weixin"
   },
   "preinstall": "npx only-allow pnpm",
   "keywords": [],
