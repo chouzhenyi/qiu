@@ -88,6 +88,9 @@ importers:
       '@dcloudio/uni-stacktracey':
         specifier: 3.0.0-4000720240327002
         version: 3.0.0-4000720240327002
+      '@dcloudio/uni-ui':
+        specifier: ^1.5.5
+        version: 1.5.5
       '@dcloudio/vite-plugin-uni':
         specifier: 3.0.0-4000720240327002
         version: 3.0.0-4000720240327002(postcss@8.4.38)(rollup@3.29.4)(ts-node@10.0.0(@types/node@18.11.18)(typescript@4.9.5))(vite@4.3.5(@types/node@18.11.18)(less@4.1.3)(sass@1.77.6)(terser@5.18.2))(vue@3.4.30(typescript@4.9.5))
@@ -100,6 +103,9 @@ importers:
       sass:
         specifier: ^1.77.6
         version: 1.77.6
+      sass-loader:
+        specifier: ^14.2.1
+        version: 14.2.1(sass@1.77.6)(webpack@5.88.0)
       typescript:
         specifier: ^4.9.4
         version: 4.9.5
@@ -1299,6 +1305,9 @@ packages:
 
   '@dcloudio/uni-stat@3.0.0-4000720240327002':
     resolution: {integrity: sha512-F9+9lqlet5urQa0r3PGj5a4iNB/vkPZjdWugElO0mI3XqEzeeWq+iXQSDYGOov8nqBxBHbR8Tf2B3SdJItUI1g==}
+
+  '@dcloudio/uni-ui@1.5.5':
+    resolution: {integrity: sha512-DTr8o4lcRgu4JJclA2eT7UFVKtglK63OUtcDGysrSeZhgAJAC2gBYm/pYbv0BFxKqxfbdoAFGAFCigCVY9+NAQ==}
 
   '@dcloudio/vite-plugin-uni@3.0.0-4000720240327002':
     resolution: {integrity: sha512-9VsAOHZfEFU7e2jlIxjdbgqbCBecaPBKH0/y/fFndleq9+pHh55BQsqe5+VtjxNy68Ttcg9iocSxtM5SGOPFJA==}
@@ -4780,6 +4789,27 @@ packages:
   safer-buffer@2.1.2:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
 
+  sass-loader@14.2.1:
+    resolution: {integrity: sha512-G0VcnMYU18a4N7VoNDegg2OuMjYtxnqzQWARVWCIVSZwJeiL9kg8QMsuIZOplsJgTzZLF6jGxI3AClj8I9nRdQ==}
+    engines: {node: '>= 18.12.0'}
+    peerDependencies:
+      '@rspack/core': 0.x || 1.x
+      node-sass: ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0 || ^9.0.0
+      sass: ^1.3.0
+      sass-embedded: '*'
+      webpack: ^5.0.0
+    peerDependenciesMeta:
+      '@rspack/core':
+        optional: true
+      node-sass:
+        optional: true
+      sass:
+        optional: true
+      sass-embedded:
+        optional: true
+      webpack:
+        optional: true
+
   sass@1.77.6:
     resolution: {integrity: sha512-ByXE1oLD79GVq9Ht1PeHWCPMPB8XHpBuz1r85oByKHjZY6qV6rWnQovQzXJXuQ/XyE1Oj3iPk3lo28uzaRA2/Q==}
     engines: {node: '>=14.0.0'}
@@ -7383,6 +7413,8 @@ snapshots:
       - supports-color
       - ts-node
       - vue
+
+  '@dcloudio/uni-ui@1.5.5': {}
 
   '@dcloudio/vite-plugin-uni@3.0.0-4000720240327002(postcss@8.4.38)(rollup@3.29.4)(ts-node@10.0.0(@types/node@18.11.18)(typescript@4.9.5))(vite@4.3.5(@types/node@18.11.18)(less@4.1.3)(sass@1.77.6)(terser@5.18.2))(vue@3.4.30(typescript@4.9.5))':
     dependencies:
@@ -11764,6 +11796,13 @@ snapshots:
       is-regex: 1.1.4
 
   safer-buffer@2.1.2: {}
+
+  sass-loader@14.2.1(sass@1.77.6)(webpack@5.88.0):
+    dependencies:
+      neo-async: 2.6.2
+    optionalDependencies:
+      sass: 1.77.6
+      webpack: 5.88.0
 
   sass@1.77.6:
     dependencies:
