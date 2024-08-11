@@ -8,12 +8,26 @@ export default {
 </script>
 <script lang="ts" setup>
 console.log("************************** START **************************");
-const solveNQueens = (n: number): string[][] => {
-  const results: string[][] = [];
-  return results;
+
+const majorityElement = (nums: number[]): number => {
+  let max = nums[0];
+  let count = 1;
+  const len = nums.length;
+  for (let i = 1; i < len; i++) {
+    if (count === 0) {
+      max = nums[i];
+    }
+    if (nums[i] !== max) {
+      count--;
+    } else {
+      count++;
+    }
+  }
+  return max;
 };
-const list = solveNQueens(9);
-console.log(list);
+
+console.log(majorityElement([6, 5, 5]));
+
 console.log("************************** END **************************");
 </script>
 <style lang="css"></style>

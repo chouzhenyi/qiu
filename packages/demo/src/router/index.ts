@@ -35,7 +35,7 @@ export const router = createRouter({
     {
       name: "Algorithm",
       path: "/algorithm",
-      component: () => import("views/algorithm/index.vue"),
+      component: () => import("@/views/Algorithm/index.vue"),
     },
     {
       name: "BasicLearning",

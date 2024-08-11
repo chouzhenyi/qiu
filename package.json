@@ -7,7 +7,10 @@
     "dev": "pnpm run -C ./packages/demo dev",
     "serve": "pnpm run -C ./packages/serve dev",
     "dev:repono": "pnpm run -C ./app/repono dev:h5",
-    "dev:wx": "pnpm run -C ./app/repono dev:mp-weixin"
+    "dev:wx": "pnpm run -C ./app/repono dev:mp-weixin",
+    "webpack": "pnpm run -C ./packages/webpack dev",
+    "webpack:build": "pnpm --filter @qiu/webpack run build",
+    "webpack:analy": "pnpm --filter @qiu/webpack run analy"
   },
   "preinstall": "npx only-allow pnpm",
   "keywords": [],
