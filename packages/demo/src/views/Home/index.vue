@@ -32,7 +32,7 @@ const routerList = [
     title: "vue3学习展示",
   },
   {
-    path: "/research",
+    path: "/research/researchExcel",
     title: "奇技淫巧",
   },
   {

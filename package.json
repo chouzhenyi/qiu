@@ -10,7 +10,9 @@
     "dev:wx": "pnpm run -C ./app/repono dev:mp-weixin",
     "webpack": "pnpm run -C ./packages/webpack dev",
     "webpack:build": "pnpm --filter @qiu/webpack run build",
-    "webpack:analy": "pnpm --filter @qiu/webpack run analy"
+    "webpack:analy": "pnpm --filter @qiu/webpack run analy",
+    "format": "pnpm --filter @qiu/repono-admin run format",
+    "dev:admin": "pnpm --filter @qiu/repono-admin run dev"
   },
   "preinstall": "npx only-allow pnpm",
   "keywords": [],
