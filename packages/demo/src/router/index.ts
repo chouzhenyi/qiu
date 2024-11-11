@@ -1,19 +1,26 @@
 import { createRouter, createWebHashHistory } from "vue-router";
+import type { RouteRecordRaw} from "vue-router";
+
 import Home from "@/views/Home/index.vue";
 
-export const router = createRouter({
-  history: createWebHashHistory(),
-  routes: [
+export const routes: RouteRecordRaw []= [
     {
       name: "Home",
       path: "/",
-      component: Home,
+        component: Home,
+        meta: {
+            title: '首页',
+            
+        }
     },
     {
       name: "User",
       path: "/user",
       redirect: "/user/basic",
-      component: () => import("views/User/index.vue"),
+        component: () => import("views/User/index.vue"),
+        meta: {
+            title: '用户界面'
+        },
       children: [
         {
           name: "UserBasicInfo",
@@ -35,13 +42,19 @@ export const router = createRouter({
     {
       name: "Algorithm",
       path: "/algorithm",
-      component: () => import("@/views/Algorithm/index.vue"),
+        component: () => import("@/views/Algorithm/index.vue"),
+        meta: {
+            title: '算法练习'
+        }
     },
     {
       name: "BasicLearning",
       path: "/basicLearning",
       redirect: "/basicLearning/lifeCycle",
-      component: () => import("views/basicLearning/index.vue"),
+        component: () => import("views/basicLearning/index.vue"),
+        meta: {
+            title: 'vue3 学习展示'
+        },
       children: [
         {
           name: "LifeCycle",
@@ -61,7 +74,10 @@ export const router = createRouter({
       name: "Research",
       path: "/research",
       component: () => import("views/Research/index.vue"),
-      redirect: "/research/researchExcel",
+        redirect: "/research/researchExcel",
+        meta: {
+            title: "奇技淫巧",
+        },
       children: [
         {
           name: "ResearchExcel",
@@ -79,7 +95,10 @@ export const router = createRouter({
       name: "MyHouse",
       path: "/myHouse",
       component: () => import("views/MyHouse/index.vue"),
-      redirect: "/myHouse/myHouseManagement",
+        redirect: "/myHouse/myHouseManagement",
+        meta: {
+            title: '物品收纳'
+        },
       children: [
         {
           name: "MyHouseManagement",
@@ -88,5 +107,9 @@ export const router = createRouter({
         },
       ],
     },
-  ],
+  ]
+
+export const router = createRouter({
+  history: createWebHashHistory(),
+  routes,
 });
