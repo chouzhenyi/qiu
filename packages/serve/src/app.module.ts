@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserService } from './user/user.service';
+import { UserLoginService } from './user/user.login.service';
 import { DownloadService } from './download/download.service';
 import { UserController } from './user/user.controller';
 import { DownloadController } from './download/download.controller';
@@ -16,7 +17,13 @@ import { UploadModule } from './upload/upload.module';
     DownloadController,
     UploadController,
   ],
-  providers: [AppService, UserService, DownloadService, UploadService],
+  providers: [
+    AppService,
+    UserService,
+    UserLoginService,
+    DownloadService,
+    UploadService,
+  ],
   imports: [UploadModule],
 })
 export class AppModule {}

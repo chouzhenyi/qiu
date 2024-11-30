@@ -40,6 +40,7 @@
         <a-button type="primary" html-type="submit">提交</a-button>
       </FormItem>
     </Form>
+    <!-- <a-button type="primary" @click="getUserInfo">获取用户数据</a-button> -->
   </Card>
 </template>
 <script lang="ts">
@@ -49,11 +50,12 @@ export default {
 </script>
 <script lang="ts" setup>
 import { ref, reactive, computed } from "vue";
+import { useRouter } from "vue-router";
 import { Card, Form, FormItem } from "ant-design-vue";
-
+const $router = useRouter();
 const randomNum = ref("");
 const verifacationUrl = computed(() => {
-  return `/api/user/verification/code?num_random=${randomNum.value}`;
+  return `/api/user/public/verification/code?num_random=${randomNum.value}`;
 });
 const changeRandomNum = () => {
   randomNum.value = `${Math.floor(Math.random() * 1e5)}`;
@@ -65,9 +67,9 @@ const formModel = reactive({
   remember: false,
 });
 const onSubmit = async () => {
-  const url = "/api/user/login";
+  const url = "/api/user/public/login";
   const { username, password, remember, verificationCode } = formModel;
-  const results = await fetch(url, {
+  return fetch(url, {
     method: "post",
     headers: {
       "Content-Type": "application/json",
@@ -79,6 +81,32 @@ const onSubmit = async () => {
       remember: +remember,
       verificationCode,
     }),
+  })
+    .then(function (res) {
+      if (res.status === 200 || res.status === 201) {
+        return res.json();
+      } else {
+        return Promise.reject(res.json());
+      }
+    })
+    .then(() => {
+      $router.replace("/");
+      return {
+        message: "登录成功",
+      };
+    })
+    .finally(() => {
+      changeRandomNum();
+    });
+};
+const getUserInfo = async () => {
+  const url = "/api/user";
+  await fetch(url, {
+    method: "get",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    mode: "cors",
   }).then(function (res) {
     if (res.status === 200 || res.status === 201) {
       return res.json();
@@ -86,7 +114,6 @@ const onSubmit = async () => {
       return Promise.reject(res.json());
     }
   });
-  console.log(results);
 };
 </script>
 <style lang="less" scoped>

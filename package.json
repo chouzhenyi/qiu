@@ -12,7 +12,8 @@
     "webpack:build": "pnpm --filter @qiu/webpack run build",
     "webpack:analy": "pnpm --filter @qiu/webpack run analy",
     "format": "pnpm --filter @qiu/repono-admin run format",
-    "dev:admin": "pnpm --filter @qiu/repono-admin run dev"
+    "dev:admin": "pnpm --filter @qiu/repono-admin run dev",
+    "dev:nest": "pnpm --filter @qiu/serve run dev"
   },
   "preinstall": "npx only-allow pnpm",
   "keywords": [],
