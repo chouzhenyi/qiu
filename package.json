@@ -13,7 +13,8 @@
     "webpack:analy": "pnpm --filter @qiu/webpack run analy",
     "format": "pnpm --filter @qiu/repono-admin run format",
     "dev:admin": "pnpm --filter @qiu/repono-admin run dev",
-    "dev:nest": "pnpm --filter @qiu/serve run dev"
+    "dev:nest": "pnpm --filter @qiu/serve run dev",
+    "dev:react": "pnpm --filter @qiu/run-react-app run dev"
   },
   "preinstall": "npx only-allow pnpm",
   "keywords": [],
