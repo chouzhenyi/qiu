@@ -3,6 +3,7 @@ import { RouterView, useRoute, useRouter } from "vue-router";
 import type { RouteMeta, RouteLocationRaw } from "vue-router";
 import { computed, ref } from "vue";
 import { routes } from "./router/index";
+import { getUserInfo } from "./api/use";
 
 const $route = useRoute();
 const $router = useRouter();
@@ -36,6 +37,16 @@ const menuActiveClick = async (path: RouteLocationRaw) => {
   curPathRef.value = path;
   await $router.push(path);
 };
+
+getUserInfo()
+  .then((data) => {
+    console.log("getUserInfo", data);
+  })
+  .catch(() => {
+    $router.replace({
+      name: "UserLogin",
+    });
+  });
 </script>
 
 <template>
