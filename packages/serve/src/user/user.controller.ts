@@ -9,11 +9,15 @@ import {
   Res,
   Response,
   UseInterceptors,
+  Sse,
+  MessageEvent,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserLoginService } from './user.login.service';
 import { UserInterceptor } from './user.Interceptor';
 import { apiPublicPath } from '../common/index';
+import { interval, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @UseInterceptors(UserInterceptor)
 @Controller('user')
@@ -91,5 +95,10 @@ export class UserController {
     req.session.verificationCode = captchaTextByCrypto;
     res.type('image/svg+xml');
     res.send(captchaData);
+  }
+
+  @Sse('sse')
+  sse(): Observable<MessageEvent> {
+    return interval(3000).pipe(map((_) => ({ data: { hello: 'world' } })));
   }
 }
