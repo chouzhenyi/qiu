@@ -38,15 +38,15 @@ const menuActiveClick = async (path: RouteLocationRaw) => {
   await $router.push(path);
 };
 
-getUserInfo()
-  .then((data) => {
-    console.log("getUserInfo", data);
-  })
-  .catch(() => {
-    $router.replace({
-      name: "UserLogin",
-    });
-  });
+// getUserInfo()
+//   .then((data) => {
+//     console.log("getUserInfo", data);
+//   })
+//   .catch(() => {
+//     $router.replace({
+//       name: "UserLogin",
+//     });
+//   });
 </script>
 
 <template>
