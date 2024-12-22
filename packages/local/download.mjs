@@ -1,30 +1,29 @@
 import axios from "axios";
-import { existsSync, mkdirSync, createWriteStream, exists } from "fs";
+import { existsSync, mkdirSync, createWriteStream } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import shell from "shelljs";
 import { EventEmitter } from "events";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-
 const videoLoadedEmitter = new EventEmitter();
-videoLoadedEmitter.on("process", ({ dirName, count }) => {
-  const outputFileList = new Array(count).fill(count).map((item, index) => {
-    const filename = `output_${index}.mp4`;
-    const outputFile = join(dirName, filename);
-    return {
-      filename,
-      outputFile,
-      exists: existsSync(outputFile),
-    };
-  });
-  const notLoadedCount = outputFileList.filter((e) => !e.exists).length;
-  console.log("outputFileList", outputFileList);
-  if (!notLoadedCount) {
+videoLoadedEmitter.on("process", ({ dirName, loadedList, fileList }) => {
+  const loadedCount = loadedList.length;
+  const totalCount = fileList.length;
+  console.log(`下载进度:${loadedCount}/${totalCount}`);
+
+  if (loadedCount === totalCount) {
+    const filenameList = [];
+    for (let item of fileList) {
+      const { filename } = loadedList.find((e) => e.tsUrl === item.tsUrl) || {};
+      if (filename) {
+        filenameList.push(filename);
+      }
+    }
     shell.cd(dirName);
-    const commandStr = `ffmpeg -i "concat:${outputFileList
-      .map(({ filename }) => filename)
-      .join("|")}" -c copy output_video.mp4`;
+    const commandStr = `ffmpeg -i "concat:${filenameList.join(
+      "|"
+    )}" -c copy output_video.mp4`;
     shell.exec(commandStr, { silent: true });
     console.log("下载完成, 开始清理缓存文件");
     const preClearList = Array.from(shell.ls());
@@ -35,22 +34,28 @@ videoLoadedEmitter.on("process", ({ dirName, count }) => {
     });
     console.log("清理完成！");
   }
-  console.log(`下载进度:${count - notLoadedCount}/${count}`);
 });
 
 const downloadTsFile = async ({ origin, tsUrl, fileDirName, filename }) => {
-  const downloadUrl = join(__dirname, fileDirName, filename);
-  const res = await axios.get(origin + tsUrl, { responseType: "stream" });
-  const stream = createWriteStream(downloadUrl);
-  res.data.pipe(stream);
-  return new Promise((resolve, reject) => {
-    stream
-      .on("finish", () => {
-        resolve({ filename });
-      })
-      .on("error", (err) => {
-        resolve(err);
-      });
+  return new Promise(async (resolve) => {
+    const downloadUrl = join(__dirname, fileDirName, filename);
+    const [res, err] = await axios
+      .get(origin + tsUrl, { responseType: "stream" })
+      .then((res) => [res])
+      .catch((err) => [null, err]);
+    if (res) {
+      const stream = createWriteStream(downloadUrl);
+      res.data.pipe(stream);
+      stream
+        .on("finish", () => {
+          resolve({ filename, tsUrl });
+        })
+        .on("error", (err) => {
+          resolve({ filename: "", tsUrl });
+        });
+    } else {
+      resolve({ filename: "", tsUrl });
+    }
   });
 };
 
@@ -58,27 +63,23 @@ const batchDownloadFile = async ({
   origin,
   dirName,
   fileDirName,
-  list,
-  index,
-  count,
+  fileList,
 }) => {
-  const results = await Promise.all(
-    list.map(async ({ tsUrl, filename }) => {
-      return await downloadTsFile({
-        origin,
+  const loadedList = [];
+  fileList.forEach(({ tsUrl, filename }) => {
+    downloadTsFile({
+      origin,
+      tsUrl,
+      fileDirName,
+      filename,
+    }).then(({ tsUrl, filename = "" }) => {
+      loadedList.push({
         tsUrl,
-        fileDirName,
         filename,
-      }).catch(() => ({ filename: "" }));
-    })
-  );
-  const filenameList = results.filter(({ filename }) => !!filename);
-  shell.cd(dirName);
-  const commandStr = `ffmpeg -i "concat:${filenameList
-    .map(({ filename }) => filename)
-    .join("|")}" -c copy output_${index}.mp4`;
-  shell.exec(commandStr, { silent: true });
-  videoLoadedEmitter.emit("process", { dirName, count });
+      });
+      videoLoadedEmitter.emit("process", { dirName, loadedList, fileList });
+    });
+  });
 };
 
 export const downloadVideo = async (url, filename) => {
@@ -86,6 +87,7 @@ export const downloadVideo = async (url, filename) => {
   const list = data.split(/\n/).filter((str) => {
     return !/^#/.test(str) && !!str;
   });
+  //   list.length = 30;
   const len = list.length;
   if (len) {
     const fileDirName = filename + Math.ceil(Math.random() * 1e4);
@@ -93,35 +95,24 @@ export const downloadVideo = async (url, filename) => {
     if (!existsSync(dirName)) {
       mkdirSync(dirName);
     }
-
     const { origin } = new URL(url);
-    const stepLen = 10;
-    const fileList = list.reduce((prev, tsUrl) => {
-      const prevLen = prev.length;
+    const fileList = list.map((tsUrl) => {
       const [filename] = tsUrl.match(/\w{1,}\.ts/g);
-      const item = { filename, tsUrl };
-      if (prevLen) {
-        if (prev[prevLen - 1].length < stepLen) {
-          prev[prevLen - 1].push(item);
-          return prev;
-        } else {
-          return [...prev, [item]];
-        }
-      }
-      return [[item]];
-    }, []);
-    fileList.forEach((fileElList, index) => {
-      batchDownloadFile({
-        origin,
-        dirName,
-        fileDirName,
-        list: fileElList,
-        index,
-        count: Math.ceil(len / stepLen),
-      });
+      return { filename, tsUrl };
+    });
+    batchDownloadFile({
+      origin,
+      dirName,
+      fileDirName,
+      fileList,
+      count: fileList.length,
     });
   }
 };
 
-const url = "https://vod1.ttbfp2.com/20241219/gYBXztnn/1000kb/hls/index.m3u8";
-downloadVideo(url, "健身房奇遇记");
+// const url = "https://vod1.ttbfp2.com/20241219/gYBXztnn/1000kb/hls/index.m3u8";
+// downloadVideo(url, "健身房奇遇记");
+downloadVideo(
+  "https://vod1.ttbfp2.com/20241013/rXYPAh0A//1000kb/hls/index.m3u8",
+  "她撇了一眼"
+);
