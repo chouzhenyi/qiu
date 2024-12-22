@@ -8,12 +8,8 @@
     "serve": "pnpm run -C ./packages/serve dev",
     "dev:repono": "pnpm run -C ./app/repono dev:h5",
     "dev:wx": "pnpm run -C ./app/repono dev:mp-weixin",
-    "webpack": "pnpm run -C ./packages/webpack dev",
-    "webpack:build": "pnpm --filter @qiu/webpack run build",
-    "webpack:analy": "pnpm --filter @qiu/webpack run analy",
     "format": "pnpm --filter @qiu/repono-admin run format",
     "dev:admin": "pnpm --filter @qiu/repono-admin run dev",
-    "dev:nest": "pnpm --filter @qiu/serve run dev",
     "dev:react": "pnpm --filter @qiu/run-react-app run dev"
   },
   "preinstall": "npx only-allow pnpm",

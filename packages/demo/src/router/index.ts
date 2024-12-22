@@ -87,6 +87,11 @@ export const routes: RouteRecordRaw[] = [
         path: "/research/researchTesseract",
         component: () => import("views/Research/tesseract.vue"),
       },
+      {
+        name: "downloadVideo",
+        path: "/research/downloadVideo",
+        component: () => import("views/Research/downloadVideo.vue"),
+      },
     ],
   },
   {
@@ -104,14 +109,6 @@ export const routes: RouteRecordRaw[] = [
         component: () => import("views/MyHouse/myHouseManagement.vue"),
       },
     ],
-  },
-  {
-    name: "DemoLogin",
-    path: "/demo-login",
-    component: () => import("views/DemoLogin/login.vue"),
-    meta: {
-      title: "demo login",
-    },
   },
 ];
 

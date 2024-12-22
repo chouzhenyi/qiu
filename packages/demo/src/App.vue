@@ -3,7 +3,7 @@ import { RouterView, useRoute, useRouter } from "vue-router";
 import type { RouteMeta, RouteLocationRaw } from "vue-router";
 import { computed, ref } from "vue";
 import { routes } from "./router/index";
-import { getUserInfo } from "./api/use";
+import { getUserInfo } from "./api/user";
 
 const $route = useRoute();
 const $router = useRouter();
@@ -68,7 +68,7 @@ const menuActiveClick = async (path: RouteLocationRaw) => {
         {{ item.title }}
       </div>
     </div>
-    <RouterView />
+    <RouterView class="router-wrapper" />
   </div>
 </template>
 
@@ -91,6 +91,10 @@ const menuActiveClick = async (path: RouteLocationRaw) => {
         }
       }
     }
+  }
+
+  .router-wrapper {
+    flex: 1;
   }
 }
 </style>

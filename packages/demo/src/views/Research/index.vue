@@ -20,7 +20,11 @@ import { h, ref } from "vue";
 import { useRouter } from "vue-router";
 import { Menu } from "ant-design-vue";
 import type { MenuProps, ItemType } from "ant-design-vue";
-import { FileExcelOutlined, FileProtectOutlined } from "@ant-design/icons-vue";
+import {
+  FileExcelOutlined,
+  FileProtectOutlined,
+  PlaySquareOutlined,
+} from "@ant-design/icons-vue";
 
 type routerMenuType = ItemType & {
   path: string;
@@ -42,6 +46,14 @@ const routerList: routerMenuType[] = [
     title: "识别身份证号码",
     key: 1,
     icon: () => h(FileProtectOutlined),
+  },
+  {
+    path: "/research/downloadVideo",
+    name: "DownloadVideo",
+    label: "下载视频",
+    title: "下载视频",
+    key: 2,
+    icon: () => h(PlaySquareOutlined),
   },
 ];
 const selectedKeys = ref<number[]>([0]);

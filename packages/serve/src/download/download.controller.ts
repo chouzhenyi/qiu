@@ -8,14 +8,31 @@ export class DownloadController {
   getData(): string {
     return 'TODO: 可下载资源列表';
   }
-  @Post('/resource')
-  async getResource(@Body() body) {
-    const { url, filename } = body;
-    await this.downloadService.downloadFile(url, filename);
+  @Get('video')
+  getDownloadData(): string {
+    return '视频下载';
+  }
+  @Post('video')
+  getResource(@Body() body) {
+    const { url, name } = body;
+    console.log(body);
+    const { checkProps, downloadFile } = this.downloadService;
+    const code = checkProps({ url, name });
+    if (!code) {
+      downloadFile(url, name);
+      return {
+        code: 0,
+        msg: '资源已经发起下载，稍后去下载列表查看结果！',
+        data: {
+          url,
+          name,
+        },
+      };
+    }
     return {
-      code: 0,
-      msg: '资源已经发起下载，稍后去下载列表查看结果！',
-      data: {},
+      code: 1,
+      msg: '参数不全',
+      data: { url, name },
     };
   }
 }
