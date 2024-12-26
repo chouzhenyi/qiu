@@ -6,11 +6,9 @@
   "scripts": {
     "dev": "pnpm run -C ./packages/demo dev",
     "serve": "pnpm run -C ./packages/serve dev",
-    "dev:repono": "pnpm run -C ./app/repono dev:h5",
-    "dev:wx": "pnpm run -C ./app/repono dev:mp-weixin",
-    "format": "pnpm --filter @qiu/repono-admin run format",
-    "dev:admin": "pnpm --filter @qiu/repono-admin run dev",
-    "dev:react": "pnpm --filter @qiu/run-react-app run dev"
+    "dev:react": "pnpm --filter @qiu/run-react-app run dev",
+    "dev:webpack": "pnpm run -C ./packages/webpack start",
+    "build:webpack": "pnpm run -C ./packages/webpack build"
   },
   "preinstall": "npx only-allow pnpm",
   "keywords": [],
