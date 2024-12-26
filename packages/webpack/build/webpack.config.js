@@ -1,10 +1,10 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
 const postcssConfig = require("./postcss.config");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
-const basePath = path.resolve(__dirname, "../");
-console.log(postcssConfig);
 
+const basePath = path.resolve(__dirname, "../");
 module.exports = {
   mode: "development",
   entry: path.resolve(basePath, "./src/index.js"),
@@ -31,14 +31,19 @@ module.exports = {
     new webpack.DefinePlugin({
       AD: "'护舒宝'",
     }),
+    new MiniCssExtractPlugin({
+      filename: "[name].[contenthash:8].css",
+      chunkFilename: "[id].css",
+    }),
   ],
   module: {
     rules: [
       {
         test: /\.css$/i,
         use: [
-          "style-loader",
-          "css-loader",
+          { loader: MiniCssExtractPlugin.loader },
+          // "style-loader",
+          { loader: "css-loader", options: { sourceMap: true } },
           {
             loader: "postcss-loader",
             options: {
@@ -52,7 +57,8 @@ module.exports = {
       {
         test: /\.less/i,
         use: [
-          "style-loader",
+          //   "style-loader",
+          { loader: MiniCssExtractPlugin.loader },
           "css-loader",
           {
             loader: "postcss-loader",
