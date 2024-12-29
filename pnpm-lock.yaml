@@ -278,6 +278,9 @@ importers:
       jest-watch-typeahead:
         specifier: ^1.0.0
         version: 1.1.0(jest@27.5.1(ts-node@10.0.0(@swc/core@1.10.1)(@types/node@20.16.5)(typescript@5.4.5)))
+      less-loader:
+        specifier: ^11.1.3
+        version: 11.1.3(less@4.1.3)(webpack@5.93.0(@swc/core@1.10.1))
       mini-css-extract-plugin:
         specifier: ^2.4.5
         version: 2.9.0(webpack@5.93.0(@swc/core@1.10.1))
@@ -22132,6 +22135,11 @@ snapshots:
   lcid@3.1.1:
     dependencies:
       invert-kv: 3.0.1
+
+  less-loader@11.1.3(less@4.1.3)(webpack@5.93.0(@swc/core@1.10.1)):
+    dependencies:
+      less: 4.1.3
+      webpack: 5.93.0(@swc/core@1.10.1)
 
   less-loader@11.1.3(less@4.1.3)(webpack@5.93.0):
     dependencies:

@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "pnpm run -C ./packages/demo dev",
     "serve": "pnpm run -C ./packages/serve dev",
-    "dev:react": "pnpm --filter @qiu/run-react-app run dev",
+    "dev:react": "pnpm --filter @qiu/react-app run dev",
+    "build:react": "pnpm --filter @qiu/react-app run build",
     "dev:webpack": "pnpm run -C ./packages/webpack start",
     "build:webpack": "pnpm run -C ./packages/webpack build"
   },
