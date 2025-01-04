@@ -14,4 +14,4 @@ const download = async (url) => {
 // download("mSNaact6.ts");
 // download("5RrgXCnM.ts");
 
-shell.exec(`ffmpeg -i "concat:mSNaact6.ts|5RrgXCnM.ts" -c copy output.mp4`);
+// shell.exec(`ffmpeg -i "concat:mSNaact6.ts|5RrgXCnM.ts" -c copy output.mp4`);

@@ -5,6 +5,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script>
+        const largestRectangleArea = (heights) => {
+            const stack = [];
+            let maxArea = 0;
+            for (let item of heights) {
+
+                if (!stack.length || item >= stack[0]) {
+                    !!item && stack.push(item)
+                } else {
+                    const stackNum = stack.filter(item => !!item);
+                    const curResult = stackNum[0] * stackNum.length
+                    maxArea = Math.max(maxArea, curResult)
+                    stack.length && stack.splice(0)
+                }
+            }
+            if (stack.length) {
+                const stackNum = stack.filter(item => !!item);
+                const curResult = stackNum[0] * stackNum.length
+                maxArea = Math.max(maxArea, curResult)
+            }
+            return maxArea;
+        };
+        const res = largestRectangleArea([0, 9])
+        console.log('res ==>', res)
+    </script>
 </head>
 
 <body>

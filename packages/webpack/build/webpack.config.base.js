@@ -2,8 +2,10 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
 const postcssConfig = require("./postcss.config");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const path = require("path");
+const ProgressBarPlugin = require("progress-bar-webpack-plugin");
+const CssMinimizerWebpackPlugin = require("css-minimizer-webpack-plugin");
 
+const path = require("path");
 const basePath = path.resolve(__dirname, "../");
 module.exports = {
   mode: "development",
@@ -14,14 +16,11 @@ module.exports = {
     clean: true,
   },
   devtool: "inline-source-map",
-  devServer: {
-    port: "3000",
-    // open: true,
-  },
   resolve: {
     alias: {
-      "@": path.resolve(basePath, "src"),
+      "~@": path.resolve(basePath, "src"),
     },
+    extensions: [".tsx", ".ts", ".js"],
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -35,6 +34,7 @@ module.exports = {
       filename: "[name].[contenthash:8].css",
       chunkFilename: "[id].css",
     }),
+    new ProgressBarPlugin(),
   ],
   module: {
     rules: [
@@ -72,12 +72,37 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png|jpg|jpeg|gif)$/i,
+        test: /\.(png|jpg|jpeg|gif|svg|webp)$/i,
         type: "asset",
         generator: {
           filename: "assets/[hash][ext]",
         },
+        use: [],
+      },
+      {
+        test: /\.txt$/i,
+        use: ["raw-loader"],
+      },
+      {
+        test: /\.(js|ts|jsx|tsx)$/,
+        // include: path.resolve(basePath, "./src"),
+        use: [
+          {
+            loader: "esbuild-loader",
+            options: {
+              loader: "tsx",
+              target: "es2015",
+            },
+          },
+        ],
       },
     ],
+  },
+  optimization: {
+    minimizer: [new CssMinimizerWebpackPlugin()],
+  },
+  performance: {
+    maxEntrypointSize: 50000000,
+    maxAssetSize: 30000000,
   },
 };

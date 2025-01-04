@@ -43,6 +43,9 @@ const downloadTsFile = async ({ origin, tsUrl, fileDirName, filename }) => {
       .get(origin + tsUrl, { responseType: "stream" })
       .then((res) => [res])
       .catch((err) => [null, err]);
+    if (err) {
+      console.error(`${filename} 文件下载错误`);
+    }
     if (res) {
       const stream = createWriteStream(downloadUrl);
       res.data.pipe(stream);
@@ -66,8 +69,8 @@ const batchDownloadFile = async ({
   fileList,
 }) => {
   const loadedList = [];
-  fileList.forEach(({ tsUrl, filename }) => {
-    downloadTsFile({
+  fileList.forEach(async ({ tsUrl, filename }) => {
+    await downloadTsFile({
       origin,
       tsUrl,
       fileDirName,
@@ -112,7 +115,9 @@ export const downloadVideo = async (url, filename) => {
 
 // const url = "https://vod1.ttbfp2.com/20241219/gYBXztnn/1000kb/hls/index.m3u8";
 // downloadVideo(url, "健身房奇遇记");
-downloadVideo(
-  "https://vod1.ttbfp2.com/20241013/rXYPAh0A//1000kb/hls/index.m3u8",
-  "她撇了一眼"
-);
+// downloadVideo(
+//   "https://vod1.ttbfp2.com/20241013/rXYPAh0A//1000kb/hls/index.m3u8",
+//   "她撇了一眼"
+// );
+const url = "https://vod1.ttbfp2.com/20241221/tXmRHK5M/1000kb/hls/index.m3u8";
+downloadVideo(url, "假新垣结衣");
