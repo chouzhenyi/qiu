@@ -25,16 +25,28 @@ export const routes: RouteRecordRaw[] = [
         name: "UserBasicInfo",
         path: "/user/basic",
         component: () => import("views/User/Basic/index.vue"),
+        meta: {
+          parent: "User",
+          title: "用户基本信息",
+        },
       },
       {
         name: "UserLogin",
         path: "/user/login",
         component: () => import("views/User/Basic/login.vue"),
+        meta: {
+          parent: "User",
+          title: "用户登录",
+        },
       },
       {
         name: "UserInfoEdit",
         path: "/user/userInfoEdit",
         component: () => import("views/User/Basic/userInfoEdit.vue"),
+        meta: {
+          parent: "User",
+          title: "用户信息编辑",
+        },
       },
     ],
   },
@@ -59,12 +71,20 @@ export const routes: RouteRecordRaw[] = [
         name: "LifeCycle",
         path: "/basicLearning/lifeCycle",
         component: () => import("views/basicLearning/Knowledge/lifeCycle.vue"),
+        meta: {
+          parent: "BasicLearning",
+          title: "生命周期",
+        },
       },
       {
         name: "CustomVModel",
         path: "/basicLearning/customVModel",
         component: () =>
           import("views/basicLearning/Knowledge/customVModel/index.vue"),
+        meta: {
+          parent: "BasicLearning",
+          title: "自定义VModel",
+        },
       },
     ],
   },
@@ -81,16 +101,28 @@ export const routes: RouteRecordRaw[] = [
         name: "ResearchExcel",
         path: "/research/researchExcel",
         component: () => import("views/Research/excel.vue"),
+        meta: {
+          parent: "Research",
+          title: "搜索excel",
+        },
       },
       {
         name: "ResearchTesseract",
         path: "/research/researchTesseract",
         component: () => import("views/Research/tesseract.vue"),
+        meta: {
+          parent: "Research",
+          title: "数字识别",
+        },
       },
       {
         name: "downloadVideo",
         path: "/research/downloadVideo",
         component: () => import("views/Research/downloadVideo.vue"),
+        meta: {
+          parent: "Research",
+          title: "下载视频",
+        },
       },
     ],
   },
@@ -107,8 +139,20 @@ export const routes: RouteRecordRaw[] = [
         name: "MyHouseManagement",
         path: "/myHouse/myHouseManagement",
         component: () => import("views/MyHouse/myHouseManagement.vue"),
+        meta: {
+          parent: "MyHouse",
+          title: "房间管理",
+        },
       },
     ],
+  },
+  {
+    name: "MonitorSystem",
+    path: "/monitorSystem",
+    component: () => import("views/MonitorSystem/index.vue"),
+    meta: {
+      title: "监控系统",
+    },
   },
 ];
 

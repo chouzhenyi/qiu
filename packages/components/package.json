@@ -4,5 +4,8 @@
   "description": "",
   "keywords": [],
   "author": "chouzhenyi",
-  "license": "996.icu"
+  "license": "996.icu",
+  "dependencies": {
+    "ant-design-vue": "^4.0.0"
+  }
 }

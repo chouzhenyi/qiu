@@ -7,12 +7,12 @@
     />
   </Form>
 </template>
-<script lang="tsx">
+<script lang="ts">
 export default {
   name: "BasicForm",
 };
 </script>
-<script lang="tsx" setup>
+<script lang="ts" setup>
 import { Form, Input } from "ant-design-vue";
 import { PropType } from "vue";
 import type { FormSchema, ActionBtnGroupType } from "./type.d";

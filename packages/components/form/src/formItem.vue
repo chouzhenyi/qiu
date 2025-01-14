@@ -6,12 +6,12 @@
     />
   </FormItem>
 </template>
-<script lang="tsx">
+<script lang="ts">
 export default {
   name: "FormItem",
 };
 </script>
-<script lang="tsx" setup>
+<script lang="ts" setup>
 import { FormItem, Input } from "ant-design-vue";
 import { computed, PropType } from "vue";
 import { omit, pick } from "lodash-es";

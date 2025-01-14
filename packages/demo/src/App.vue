@@ -15,19 +15,18 @@ const getRouteData = computed(() => {
 const getShowMenu = computed(() => {
   return getRouteData.value?.name && getRouteData.value.name !== "UserLogin";
 });
-
 const curPathRef = ref<RouteLocationRaw>(location.hash.replace(/^#/, ""));
 
 const routerList = computed(() => {
-  const curPath = curPathRef.value as string;
+  const { name: curName, meta = {} } = $route;
+  const { parent } = meta;
   return routes.map((route) => {
-    const { path } = route;
-    const meta = route.meta as RouteMeta;
-    const active =
-      curPath === "/" ? curPath === path : curPath.startsWith?.(path);
+    const { path, name } = route;
+    const { title } = route.meta as RouteMeta;
+    const active = name === curName || name === parent;
     return {
       path,
-      title: meta.title,
+      title,
       active,
     };
   });

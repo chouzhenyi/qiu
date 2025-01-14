@@ -21,7 +21,7 @@ defineProps({
   value: { type: String, default: "" },
 });
 const emit = defineEmits(["update:value"]);
-const onChange = (e) => {
+const onChange = (e: any) => {
   emit("update:value", e.target.value);
 };
 </script>
