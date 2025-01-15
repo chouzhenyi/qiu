@@ -124,6 +124,15 @@ export const routes: RouteRecordRaw[] = [
           title: "下载视频",
         },
       },
+      {
+        name: "demo",
+        path: "/research/demo",
+        component: () => import("views/Research/demo.vue"),
+        meta: {
+          parent: "Research",
+          title: "手写代码练习",
+        },
+      },
     ],
   },
   {
