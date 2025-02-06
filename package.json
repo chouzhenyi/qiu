@@ -9,7 +9,8 @@
     "dev:react": "pnpm --filter @qiu/react-app run dev",
     "build:react": "pnpm --filter @qiu/react-app run build",
     "dev:webpack": "pnpm run -C ./packages/webpack start",
-    "build:webpack": "pnpm run -C ./packages/webpack build"
+    "build:webpack": "pnpm run -C ./packages/webpack build",
+    "parse": "pnpm run -C ./packages/swc parse"
   },
   "preinstall": "npx only-allow pnpm",
   "keywords": [],
