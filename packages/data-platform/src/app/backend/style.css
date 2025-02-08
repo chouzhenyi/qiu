@@ -1,0 +1,37 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100%;
+}
+.title {
+  font-size: 24px;
+  font-weight: 600;
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #e5e5e5;
+}
+.designZone {
+  flex: 1;
+  display: flex;
+
+  .designLeft {
+    flex: 1;
+    .formZone {
+      min-height: 300px;
+      border-bottom: 1px solid #e5e5e5;
+    }
+    .buttonZone {
+      height: 50px;
+      border-bottom: 1px solid #e5e5e5;
+    }
+    .tableZone {
+      flex: 1;
+    }
+  }
+  .designRight {
+    width: 300px;
+    border-left: 1px solid #e5e5e5;
+  }
+}
