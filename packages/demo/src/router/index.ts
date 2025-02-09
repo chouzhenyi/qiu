@@ -163,6 +163,14 @@ export const routes: RouteRecordRaw[] = [
       title: "监控系统",
     },
   },
+  {
+    name: "Speech",
+    path: "/speech",
+    component: () => import("views/speech/index.vue"),
+    meta: {
+      title: "四合院",
+    },
+  },
 ];
 
 export const router = createRouter({
