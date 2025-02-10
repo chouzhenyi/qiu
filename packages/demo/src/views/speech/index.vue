@@ -13,6 +13,7 @@
       <div>第{{ playDataRef.code }}章</div>
       <div>第{{ playDataRef.currentPage }}页</div>
     </Card>
+    <div>是否支持朗读：{{ hasSpeechSynthesis }}</div>
     <Table
       bordered
       size="small"
@@ -29,8 +30,14 @@
         onChange: handleTableChange,
       }"
     >
-      <template #operation="{ record }">
-        <Button type="primary" @click="play(record)">播放</Button>
+      <template #bodyCell="{ record, column, text }">
+        <Button
+          v-if="column.dataIndex === 'operation'"
+          type="primary"
+          @click="play(record)"
+        >
+          播放
+        </Button>
       </template>
     </Table>
   </div>
@@ -59,7 +66,6 @@ const columns = [
   {
     title: "operation",
     dataIndex: "operation",
-    slots: { customRender: "operation" },
   },
 ];
 const chapterList = ref([]);
@@ -125,7 +131,7 @@ const handlePlay = (content: string) => {
   //   };
   u.onboundary = (e) => {
     const { charIndex, elapsedTime } = e;
-    percentRef.value = (charIndex / content.length) * 100;
+    percentRef.value = Math.ceil(charIndex / content.length) * 100;
     elapsedTimeRef.value = Math.floor(elapsedTime / 1000);
   };
 };
@@ -164,6 +170,8 @@ const play = async (record: any) => {
 onMounted(async () => {
   initData();
 });
+
+const hasSpeechSynthesis = !!window.speechSynthesis;
 </script>
 <style lang="less" scoped>
 .wrapper {

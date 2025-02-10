@@ -1,6 +1,7 @@
 import { request } from "../common/request";
 
-const prefix = "http://localhost:3000";
+// const prefix = "http://localhost:3000";
+const prefix = "http://192.168.1.4:3000";
 
 enum api {
   chapterList = `${prefix}/text-speech/list`,

@@ -37,6 +37,12 @@ const menuActiveClick = async (path: RouteLocationRaw) => {
   await $router.push(path);
 };
 
+const isMobile = () => {
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    navigator.userAgent
+  );
+};
+
 // getUserInfo()
 //   .then((data) => {
 //     console.log("getUserInfo", data);
@@ -50,7 +56,7 @@ const menuActiveClick = async (path: RouteLocationRaw) => {
 
 <template>
   <div id="app">
-    <div class="menu-wrapper" v-if="getShowMenu">
+    <div class="menu-wrapper" v-if="!isMobile() && getShowMenu">
       <div
         v-for="(item, index) in routerList"
         :key="index"
