@@ -1,0 +1,15 @@
+{
+  "name": "@qiu/headless",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "puppeteer": "node ./puppeteer.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "puppeteer": "^24.6.0"
+  }
+}

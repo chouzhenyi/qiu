@@ -10,7 +10,8 @@
     "build:react": "pnpm --filter @qiu/react-app run build",
     "dev:webpack": "pnpm run -C ./packages/webpack start",
     "build:webpack": "pnpm run -C ./packages/webpack build",
-    "parse": "pnpm run -C ./packages/swc parse"
+    "parse": "pnpm run -C ./packages/swc parse",
+    "puppeteer": "pnpm --filter @qiu/headless run puppeteer"
   },
   "preinstall": "npx only-allow pnpm",
   "keywords": [],
