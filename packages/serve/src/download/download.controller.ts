@@ -15,23 +15,18 @@ export class DownloadController {
   @Post('video')
   getResource(@Body() body) {
     const { url, name } = body;
-    // const { checkProps, downloadFile } = this.downloadService;
-    // const code = checkProps({ url, name });
-    // if (!code) {
-    //   downloadFile(url, name);
-    //   return {
-    //     code: 0,
-    //     msg: '资源已经发起下载，稍后去下载列表查看结果！',
-    //     data: {
-    //       url,
-    //       name,
-    //     },
-    //   };
-    // }
-    return {
-      code: 1,
-      msg: '参数不全',
-      data: { url, name },
-    };
+    const { checkProps, downloadFile } = this.downloadService;
+    const code = checkProps({ url, name });
+    if (!code) {
+      downloadFile(url, name);
+      return {
+        code: 0,
+        msg: '资源已经发起下载，稍后去下载列表查看结果！',
+        data: {
+          url,
+          name,
+        },
+      };
+    }
   }
 }

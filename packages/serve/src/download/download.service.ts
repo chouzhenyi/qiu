@@ -1,17 +1,14 @@
 import { Injectable } from '@nestjs/common';
-
+import { downloadFile } from './video/download';
 /**
  * @description 存放文件的静态目录
  */
 const __BASE_PATH__ = 'downloadResources';
 
 @Injectable()
-export class DownloadService {
-  async mergeResource() {
-    console.log('merge-resource');
-  }
+class DownloadService {
   async downloadFile(url, filename) {
-    // downloadFile(url, filename);
+    downloadFile({ url, filename, dirName: __BASE_PATH__ });
     return { url, filename };
   }
   checkProps({ url, name }) {
@@ -21,3 +18,5 @@ export class DownloadService {
     return 0;
   }
 }
+
+export { DownloadService };

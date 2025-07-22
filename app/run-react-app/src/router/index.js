@@ -1,6 +1,6 @@
 import Home from "../pages/home";
 import RefTest from "../pages/refTest";
-import TransitionGroup from "../pages/transitionGroup";
+import DataFlow from "../pages/DataFlow";
 
 export const routes = [
   {
@@ -10,14 +10,12 @@ export const routes = [
   },
   {
     path: "/ref-test",
-    // component: () => import("../pages/refTest"),
     component: RefTest,
     title: "ref 测试",
   },
   {
-    path: "/transition-group",
-    // component: () => import("../pages/transitionGroup"),
-    component: TransitionGroup,
-    title: "动画",
+    path: "/data-flow",
+    component: DataFlow,
+    title: "数据流",
   },
 ];
