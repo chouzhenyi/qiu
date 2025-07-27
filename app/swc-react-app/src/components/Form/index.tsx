@@ -26,5 +26,3 @@ const CustomForm = (props: { schemas: SchamaType[] }) => {
 };
 
 export default CustomForm;
-
-// export * from "./FormType";

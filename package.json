@@ -6,8 +6,6 @@
   "scripts": {
     "dev": "pnpm run -C ./packages/demo dev",
     "serve": "pnpm run -C ./packages/serve dev",
-    "dev:react": "pnpm -C app/optimize-react-app run start",
-    "build:react": "pnpm -C app/optimize-react-app run build",
     "dev:swc": "pnpm -C app/swc-react-app run start",
     "build:swc": "pnpm -C app/swc-react-app run build",
     "dev:webpack": "pnpm run -C ./packages/webpack start",
