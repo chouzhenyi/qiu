@@ -6,11 +6,12 @@
   "scripts": {
     "dev": "pnpm run -C ./packages/demo dev",
     "serve": "pnpm run -C ./packages/serve dev",
-    "dev:react": "pnpm --filter @qiu/react-app run dev",
-    "build:react": "pnpm --filter @qiu/react-app run build",
+    "dev:react": "pnpm -C app/optimize-react-app run start",
+    "build:react": "pnpm -C app/optimize-react-app run build",
+    "dev:swc": "pnpm -C app/swc-react-app run start",
+    "build:swc": "pnpm -C app/swc-react-app run build",
     "dev:webpack": "pnpm run -C ./packages/webpack start",
     "build:webpack": "pnpm run -C ./packages/webpack build",
-    "parse": "pnpm run -C ./packages/swc parse",
     "puppeteer": "pnpm --filter @qiu/headless run puppeteer"
   },
   "preinstall": "npx only-allow pnpm",
